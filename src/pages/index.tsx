@@ -118,7 +118,7 @@ export default function Home() {
         }} 
       />
 
-      {/* Contact Section */}}
+      {/* Contact Section */}
       <section id="contact" className="py-24 bg-black">
         <div className="container mx-auto px-6">
           <motion.h2 
