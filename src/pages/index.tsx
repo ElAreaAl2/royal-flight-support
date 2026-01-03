@@ -145,7 +145,7 @@ export default function Home() {
                 </div>
                 <div>
                   <h3 className="text-xl font-serif mb-1 text-white">Santiago Prieto Durán</h3>
-                  <p className="text-gray-400 text-sm uppercase tracking-wider">Operations</p>
+                  <p className="text-gray-400 text-sm uppercase tracking-wider">CEO</p>
                 </div>
               </div>
               
