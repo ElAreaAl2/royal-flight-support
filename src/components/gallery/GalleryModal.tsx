@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { X, ChevronLeft, ChevronRight, Grid } from 'lucide-react';
 import { useTranslation } from 'next-i18next';
 
-const totalImages = 23;
+const totalImages = 32;
 const previewImages = 6;
 
 interface GalleryModalProps {
