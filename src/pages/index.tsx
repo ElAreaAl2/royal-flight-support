@@ -4,7 +4,7 @@ import ContactForm from '@/components/contact/ContactForm';
 import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { motion } from 'framer-motion';
-import { Plane, Fuel, FileCheck, Utensils } from 'lucide-react';
+import { Plane, Fuel, FileCheck, Utensils, Mail, Phone, User } from 'lucide-react';
 import { GetStaticProps } from 'next';
 
 export default function Home() {
@@ -136,7 +136,47 @@ export default function Home() {
           >
             {t('contact')}
           </motion.h2>
-          <ContactForm />
+          
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+            <ContactForm />
+            
+            <motion.div 
+              initial={{ opacity: 0, x: 20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              className="text-white space-y-8 p-8 border border-white/10 rounded-lg bg-white/5"
+            >
+              <div className="flex items-start space-x-4">
+                <div className="p-3 bg-white/10 rounded-full">
+                  <User className="w-6 h-6" />
+                </div>
+                <div>
+                  <h3 className="text-xl font-serif mb-1 text-white">Santiago Prieto Duran</h3>
+                  <p className="text-gray-400 text-sm uppercase tracking-wider">Operations</p>
+                </div>
+              </div>
+              
+              <div className="space-y-6">
+                <div className="flex items-center space-x-4 group">
+                  <div className="p-3 bg-white/10 rounded-full group-hover:bg-white/20 transition-colors">
+                    <Mail className="w-6 h-6" />
+                  </div>
+                  <a href="mailto:Ops@royal-flightsupport.com" className="text-gray-300 hover:text-white transition-colors break-all">
+                    Ops@royal-flightsupport.com
+                  </a>
+                </div>
+                
+                <div className="flex items-center space-x-4 group">
+                  <div className="p-3 bg-white/10 rounded-full group-hover:bg-white/20 transition-colors">
+                    <Phone className="w-6 h-6" />
+                  </div>
+                  <a href="tel:+573002827853" className="text-gray-300 hover:text-white transition-colors">
+                    +57 300 282 7853
+                  </a>
+                </div>
+              </div>
+            </motion.div>
+          </div>
         </div>
       </section>
     </Layout>
