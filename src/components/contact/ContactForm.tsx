@@ -33,7 +33,7 @@ const ContactForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="space-y-6 max-w-lg mx-auto">
+    <form onSubmit={handleSubmit(onSubmit)} className="space-y-6 w-full">
       <div>
         <label className="block text-sm font-medium mb-2 text-gray-300">{t('name')}</label>
         <input
