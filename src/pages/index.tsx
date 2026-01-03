@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Layout from '@/components/layout/Layout';
 import ContactForm from '@/components/contact/ContactForm';
 import { useTranslation } from 'next-i18next';
@@ -9,6 +9,13 @@ import { GetStaticProps } from 'next';
 
 export default function Home() {
   const { t } = useTranslation('common');
+
+  useEffect(() => {
+    // Ensure page starts at top unless there is a hash link
+    if (!window.location.hash) {
+      window.scrollTo(0, 0);
+    }
+  }, []);
 
   const services = [
     { icon: <Plane className="w-8 h-8" />, title: t('service_charter_title'), desc: t('service_charter_desc') },
