@@ -3,6 +3,7 @@ import Link from 'next/link';
 import Layout from '@/components/layout/Layout';
 import ContactForm from '@/components/contact/ContactForm';
 import CharterModal from '@/components/charter/CharterModal';
+import GalleryModal, { GallerySection } from '@/components/gallery/GalleryModal';
 import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { motion } from 'framer-motion';
@@ -12,6 +13,8 @@ import { GetStaticProps } from 'next';
 export default function Home() {
   const { t } = useTranslation('common');
   const [charterModalOpen, setCharterModalOpen] = useState(false);
+  const [galleryModalOpen, setGalleryModalOpen] = useState(false);
+  const [initialGalleryImage, setInitialGalleryImage] = useState(1);
 
   useEffect(() => {
     // Ensure page starts at top unless there is a hash link
@@ -108,40 +111,14 @@ export default function Home() {
       </section>
 
       {/* Gallery Section */}
-      <section id="gallery" className="py-24 bg-zinc-900">
-        <div className="container mx-auto px-6">
-          <motion.h2 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-3xl font-serif text-center text-white mb-16 tracking-widest uppercase"
-          >
-            {t('gallery')}
-          </motion.h2>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {[1, 2, 3, 4, 5, 6].map((num) => (
-              <motion.div
-                key={num}
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: num * 0.1 }}
-                className="relative aspect-[4/3] overflow-hidden group cursor-pointer"
-              >
-                <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors duration-500 z-10" />
-                <img 
-                  src={`/images/img${num}.jpeg`} 
-                  alt={`Gallery Image ${num}`}
-                  className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700"
-                />
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
+      <GallerySection 
+        onOpenModal={(imageNum) => {
+          if (imageNum) setInitialGalleryImage(imageNum);
+          setGalleryModalOpen(true);
+        }} 
+      />
 
-      {/* Contact Section */}
+      {/* Contact Section */}}
       <section id="contact" className="py-24 bg-black">
         <div className="container mx-auto px-6">
           <motion.h2 
@@ -198,6 +175,13 @@ export default function Home() {
 
       {/* Charter Modal */}
       <CharterModal isOpen={charterModalOpen} onClose={() => setCharterModalOpen(false)} />
+      
+      {/* Gallery Modal */}
+      <GalleryModal 
+        isOpen={galleryModalOpen} 
+        onClose={() => setGalleryModalOpen(false)} 
+        initialImage={initialGalleryImage}
+      />
     </Layout>
   );
 }
