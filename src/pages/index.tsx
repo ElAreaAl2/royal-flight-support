@@ -95,7 +95,7 @@ export default function Home() {
                   <p className="text-gray-400 text-sm">{service.desc}</p>
                   {(service.link || service.action) && (
                     <span className="text-white/50 text-xs mt-2 block group-hover:text-white transition-colors">
-                      Click to view →
+                      {t('clickToView')} →
                     </span>
                   )}
                 </motion.div>
@@ -144,7 +144,7 @@ export default function Home() {
                   <User className="w-6 h-6" />
                 </div>
                 <div>
-                  <h3 className="text-xl font-serif mb-1 text-white">Santiago Prieto Duran</h3>
+                  <h3 className="text-xl font-serif mb-1 text-white">Santiago Prieto Durán</h3>
                   <p className="text-gray-400 text-sm uppercase tracking-wider">Operations</p>
                 </div>
               </div>
