@@ -16,5 +16,9 @@
   "service_fuel_title": "Jet Fuel",
   "service_fuel_desc": "Competitive rates and reliable supply.",
   "service_catering_title": "In-Flight Catering",
-  "service_catering_desc": "Exquisite dining at 40,000 feet."
+  "service_catering_desc": "Exquisite dining at 40,000 feet.",
+  "permitsAndHandling": "Permits & Handling",
+  "permitsDescription": "Click on a country to view available overflight permits, landing permits, and handling services across Latin America and beyond.",
+  "permitCountries": "Countries with permits",
+  "clickForDetails": "Click marker for details"
 }

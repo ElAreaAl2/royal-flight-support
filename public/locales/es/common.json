@@ -16,5 +16,9 @@
   "service_fuel_title": "Combustible Jet Fuel",
   "service_fuel_desc": "Tarifas competitivas y suministro confiable.",
   "service_catering_title": "Catering a Bordo",
-  "service_catering_desc": "Cenas exquisitas a 40,000 pies de altura."
+  "service_catering_desc": "Cenas exquisitas a 40,000 pies de altura.",
+  "permitsAndHandling": "Permisos y Manejo",
+  "permitsDescription": "Haga clic en un país para ver los permisos de sobrevuelo, aterrizaje y servicios de handling disponibles en América Latina y más allá.",
+  "permitCountries": "Países con permisos",
+  "clickForDetails": "Haga clic para más detalles"
 }

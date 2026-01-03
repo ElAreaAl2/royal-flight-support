@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import Link from 'next/link';
 import Layout from '@/components/layout/Layout';
 import ContactForm from '@/components/contact/ContactForm';
 import { useTranslation } from 'next-i18next';
@@ -18,10 +19,10 @@ export default function Home() {
   }, []);
 
   const services = [
-    { icon: <Plane className="w-8 h-8" />, title: t('service_charter_title'), desc: t('service_charter_desc') },
-    { icon: <FileCheck className="w-8 h-8" />, title: t('service_permits_title'), desc: t('service_permits_desc') },
-    { icon: <Fuel className="w-8 h-8" />, title: t('service_fuel_title'), desc: t('service_fuel_desc') },
-    { icon: <Utensils className="w-8 h-8" />, title: t('service_catering_title'), desc: t('service_catering_desc') },
+    { icon: <Plane className="w-8 h-8" />, title: t('service_charter_title'), desc: t('service_charter_desc'), link: null },
+    { icon: <FileCheck className="w-8 h-8" />, title: t('service_permits_title'), desc: t('service_permits_desc'), link: '/permits' },
+    { icon: <Fuel className="w-8 h-8" />, title: t('service_fuel_title'), desc: t('service_fuel_desc'), link: null },
+    { icon: <Utensils className="w-8 h-8" />, title: t('service_catering_title'), desc: t('service_catering_desc'), link: null },
   ];
 
   return (
@@ -71,22 +72,34 @@ export default function Home() {
           </motion.h2>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
-            {services.map((service, index) => (
-              <motion.div 
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-                className="text-center group"
-              >
-                <div className="mb-6 inline-block p-4 border border-white/20 rounded-full group-hover:border-white transition-colors duration-500">
-                  {service.icon}
-                </div>
-                <h3 className="text-xl font-serif text-white mb-3 uppercase tracking-wide">{service.title}</h3>
-                <p className="text-gray-400 text-sm">{service.desc}</p>
-              </motion.div>
-            ))}
+            {services.map((service, index) => {
+              const content = (
+                <motion.div 
+                  key={index}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.1 }}
+                  className={`text-center group ${service.link ? 'cursor-pointer' : ''}`}
+                >
+                  <div className="mb-6 inline-block p-4 border border-white/20 rounded-full group-hover:border-white transition-colors duration-500">
+                    {service.icon}
+                  </div>
+                  <h3 className="text-xl font-serif text-white mb-3 uppercase tracking-wide">{service.title}</h3>
+                  <p className="text-gray-400 text-sm">{service.desc}</p>
+                  {service.link && (
+                    <span className="text-white/50 text-xs mt-2 block group-hover:text-white transition-colors">
+                      Click to view →
+                    </span>
+                  )}
+                </motion.div>
+              );
+              return service.link ? (
+                <Link key={index} href={service.link}>{content}</Link>
+              ) : (
+                <div key={index}>{content}</div>
+              );
+            })}
           </div>
         </div>
       </section>

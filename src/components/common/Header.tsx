@@ -31,6 +31,9 @@ const Header = () => {
             <Link href="#services" className="text-white/80 hover:text-white transition-colors text-sm tracking-widest uppercase">
               {t('services')}
             </Link>
+            <Link href="/permits" className="text-white/80 hover:text-white transition-colors text-sm tracking-widest uppercase">
+              {t('service_permits_title')}
+            </Link>
             <Link href="#gallery" className="text-white/80 hover:text-white transition-colors text-sm tracking-widest uppercase">
               {t('gallery')}
             </Link>

@@ -12,6 +12,7 @@ const config: Config = {
         // We will add Royal Flight specific colors here later
         'royal-gold': '#C5A059',
         'royal-dark': '#0F172A',
+        'gold': '#D4AF37',
       },
     },
   },
