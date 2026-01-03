@@ -1,0 +1,20 @@
+{
+  "welcome": "Bienvenido a Royal Flight Support",
+  "tagline": "Experimente la cima de la aviación de lujo.",
+  "services": "Nuestros Servicios",
+  "gallery": "Galería",
+  "contact": "Contáctenos",
+  "name": "Nombre",
+  "email": "Correo Electrónico",
+  "message": "Mensaje",
+  "send": "Enviar Mensaje",
+  "language": "English",
+  "service_charter_title": "Vuelos Chárter Privados",
+  "service_charter_desc": "Viajes sin interrupciones a cualquier destino.",
+  "service_permits_title": "Permisos y Manejo",
+  "service_permits_desc": "Permisos de aterrizaje y sobrevuelo en todo el mundo.",
+  "service_fuel_title": "Combustible Jet Fuel",
+  "service_fuel_desc": "Tarifas competitivas y suministro confiable.",
+  "service_catering_title": "Catering a Bordo",
+  "service_catering_desc": "Cenas exquisitas a 40,000 pies de altura."
+}

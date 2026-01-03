@@ -1,0 +1,20 @@
+{
+  "welcome": "Welcome to Royal Flight Support",
+  "tagline": "Experience the pinnacle of luxury aviation.",
+  "services": "Our Services",
+  "gallery": "Gallery",
+  "contact": "Contact Us",
+  "name": "Name",
+  "email": "Email",
+  "message": "Message",
+  "send": "Send Message",
+  "language": "Español",
+  "service_charter_title": "Private Charter",
+  "service_charter_desc": "Seamless travel to any destination.",
+  "service_permits_title": "Permits & Handling",
+  "service_permits_desc": "Landing and overflight permits worldwide.",
+  "service_fuel_title": "Jet Fuel",
+  "service_fuel_desc": "Competitive rates and reliable supply.",
+  "service_catering_title": "In-Flight Catering",
+  "service_catering_desc": "Exquisite dining at 40,000 feet."
+}

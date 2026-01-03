@@ -1,0 +1,145 @@
+import React from 'react';
+import Layout from '@/components/layout/Layout';
+import ContactForm from '@/components/contact/ContactForm';
+import { useTranslation } from 'next-i18next';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import { motion } from 'framer-motion';
+import { Plane, Fuel, FileCheck, Utensils } from 'lucide-react';
+import { GetStaticProps } from 'next';
+
+export default function Home() {
+  const { t } = useTranslation('common');
+
+  const services = [
+    { icon: <Plane className="w-8 h-8" />, title: t('service_charter_title'), desc: t('service_charter_desc') },
+    { icon: <FileCheck className="w-8 h-8" />, title: t('service_permits_title'), desc: t('service_permits_desc') },
+    { icon: <Fuel className="w-8 h-8" />, title: t('service_fuel_title'), desc: t('service_fuel_desc') },
+    { icon: <Utensils className="w-8 h-8" />, title: t('service_catering_title'), desc: t('service_catering_desc') },
+  ];
+
+  return (
+    <Layout>
+      {/* Hero Section */}
+      <section className="relative h-screen flex items-center justify-center overflow-hidden">
+        <div className="absolute inset-0 z-0">
+          {/* Placeholder for video/image */}
+          <div className="absolute inset-0 bg-black/60 z-10" />
+          <img 
+            src="https://images.unsplash.com/photo-1540962351504-03099e0a754b?q=80&w=2070&auto=format&fit=crop" 
+            alt="Private Jet" 
+            className="w-full h-full object-cover"
+          />
+        </div>
+        
+        <div className="relative z-20 text-center px-4">
+          <motion.h1 
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, delay: 0.2 }}
+            className="text-4xl md:text-7xl font-serif text-white mb-6 tracking-widest uppercase"
+          >
+            Royal Flight Support
+          </motion.h1>
+          <motion.p 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1, delay: 0.8 }}
+            className="text-lg md:text-xl text-gray-300 tracking-wide uppercase"
+          >
+            {t('tagline')}
+          </motion.p>
+        </div>
+      </section>
+
+      {/* Services Section */}
+      <section id="services" className="py-24 bg-black">
+        <div className="container mx-auto px-6">
+          <motion.h2 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-3xl font-serif text-center text-white mb-16 tracking-widest uppercase"
+          >
+            {t('services')}
+          </motion.h2>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+            {services.map((service, index) => (
+              <motion.div 
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.1 }}
+                className="text-center group"
+              >
+                <div className="mb-6 inline-block p-4 border border-white/20 rounded-full group-hover:border-white transition-colors duration-500">
+                  {service.icon}
+                </div>
+                <h3 className="text-xl font-serif text-white mb-3 uppercase tracking-wide">{service.title}</h3>
+                <p className="text-gray-400 text-sm">{service.desc}</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Gallery Section */}
+      <section id="gallery" className="py-24 bg-zinc-900">
+        <div className="container mx-auto px-6">
+          <motion.h2 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-3xl font-serif text-center text-white mb-16 tracking-widest uppercase"
+          >
+            {t('gallery')}
+          </motion.h2>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {[1, 2, 3, 4, 5, 6].map((num) => (
+              <motion.div
+                key={num}
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: num * 0.1 }}
+                className="relative aspect-[4/3] overflow-hidden group cursor-pointer"
+              >
+                <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors duration-500 z-10" />
+                <img 
+                  src={`/images/img${num}.jpeg`} 
+                  alt={`Gallery Image ${num}`}
+                  className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700"
+                />
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Contact Section */}
+      <section id="contact" className="py-24 bg-black">
+        <div className="container mx-auto px-6">
+          <motion.h2 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-3xl font-serif text-center text-white mb-16 tracking-widest uppercase"
+          >
+            {t('contact')}
+          </motion.h2>
+          <ContactForm />
+        </div>
+      </section>
+    </Layout>
+  );
+}
+
+export const getStaticProps: GetStaticProps = async ({ locale }) => {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale ?? 'en', ['common'])),
+    },
+  };
+};
