@@ -1,14 +1,93 @@
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import Layout from '@/components/layout/Layout';
+import SEO, { SITE_URL } from '@/components/seo/SEO';
 import ContactForm from '@/components/contact/ContactForm';
 import CharterModal from '@/components/charter/CharterModal';
 import GalleryModal, { GallerySection } from '@/components/gallery/GalleryModal';
 import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { motion } from 'framer-motion';
-import { Plane, Fuel, FileCheck, Utensils, Mail, Phone, User } from 'lucide-react';
+import { Plane, Fuel, FileCheck, Utensils, Mail, Phone, User, MapPin } from 'lucide-react';
 import { GetStaticProps } from 'next';
+
+const SERVICE_CITIES = [
+  'Bogotá',
+  'Lima',
+  'Cartagena',
+  'Medellín',
+  'Cali',
+  'Barranquilla',
+  'Guatemala City',
+  'San Salvador',
+  'Tapachula',
+  'Cozumel',
+];
+
+const SERVED_COUNTRIES = [
+  'Colombia',
+  'Perú',
+  'Ecuador',
+  'Brasil',
+  'Chile',
+  'Bolivia',
+  'Panamá',
+  'Nicaragua',
+  'Guatemala',
+  'El Salvador',
+  'México',
+  'Cuba',
+  'Curazao',
+  'Estados Unidos',
+];
+
+const organizationJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  '@id': `${SITE_URL}/#organization`,
+  name: 'Royal Flight Support',
+  url: SITE_URL,
+  logo: `${SITE_URL}/images/logo.png`,
+  image: `${SITE_URL}/images/og-image.jpg`,
+  email: 'Ops@royal-flightsupport.com',
+  telephone: '+573002827853',
+  founder: {
+    '@type': 'Person',
+    name: 'Santiago Prieto Durán',
+    jobTitle: 'CEO',
+  },
+  areaServed: SERVED_COUNTRIES.map((name) => ({ '@type': 'Country', name })),
+  contactPoint: {
+    '@type': 'ContactPoint',
+    contactType: 'flight operations and sales',
+    email: 'Ops@royal-flightsupport.com',
+    telephone: '+573002827853',
+    availableLanguage: ['English', 'Spanish'],
+  },
+  hasOfferCatalog: {
+    '@type': 'OfferCatalog',
+    name: 'Aviation services in Latin America',
+    itemListElement: [
+      { position: 1, '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Trip Support', serviceType: 'Flight trip support' } },
+      { position: 2, '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'FBO & Ground Handling', serviceType: 'FBO and ground handling services' } },
+      { position: 3, '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Overflight Permits', serviceType: 'Overflight permit services' } },
+      { position: 4, '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Landing Permits', serviceType: 'Landing permit services' } },
+      { position: 5, '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Jet Fuel Supply', serviceType: 'Jet A-1 fuel supply' } },
+      { position: 6, '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Private Charter', serviceType: 'Private jet charter' } },
+      { position: 7, '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'In-Flight Catering', serviceType: 'In-flight catering' } },
+    ],
+  },
+};
+
+const websiteJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  '@id': `${SITE_URL}/#website`,
+  url: SITE_URL,
+  name: 'Royal Flight Support',
+  inLanguage: ['en', 'es'],
+  publisher: { '@id': `${SITE_URL}/#organization` },
+};
 
 export default function Home() {
   const { t } = useTranslation('common');
@@ -31,7 +110,15 @@ export default function Home() {
   ];
 
   return (
-    <Layout>
+    <>
+      <SEO
+        title={t('seo_home_title')}
+        description={t('seo_home_desc')}
+        keywords={t('seo_home_keywords')}
+        path=""
+        jsonLd={[organizationJsonLd, websiteJsonLd]}
+      />
+      <Layout>
       {/* Hero Section */}
       <section className="relative h-screen flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 z-0">
@@ -110,8 +197,66 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Coverage / FBO & Trip Support section */}
+      <section id="coverage" className="py-24 bg-black border-t border-white/10">
+        <div className="container mx-auto px-6">
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-3xl font-serif text-center text-white mb-6 tracking-widest uppercase"
+          >
+            {t('coverage_title')}
+          </motion.h2>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-gray-400 text-center max-w-3xl mx-auto mb-10 leading-relaxed"
+          >
+            {t('coverage_desc')}
+          </motion.p>
+
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            className="flex flex-wrap justify-center gap-3 mb-8"
+          >
+            {SERVICE_CITIES.map((city) => (
+              <span
+                key={city}
+                className="inline-flex items-center gap-1 px-4 py-2 border border-[#D4AF37]/40 text-white/80 text-xs uppercase tracking-widest"
+              >
+                <MapPin className="w-3 h-3 text-[#D4AF37]" />
+                {city}
+              </span>
+            ))}
+          </motion.div>
+
+          <p className="text-gray-500 text-xs text-center mb-10 uppercase tracking-widest">
+            {SERVED_COUNTRIES.join(' · ')}
+          </p>
+
+          <div className="flex flex-wrap justify-center gap-6">
+            <Link
+              href="/trip-support"
+              className="px-6 py-3 border border-white text-white hover:bg-white hover:text-black transition-colors duration-300 uppercase text-sm tracking-widest"
+            >
+              {t('coverage_view_services')} →
+            </Link>
+            <Link
+              href="/permits"
+              className="px-6 py-3 border border-[#D4AF37] text-[#D4AF37] hover:bg-[#D4AF37] hover:text-black transition-colors duration-300 uppercase text-sm tracking-widest"
+            >
+              {t('coverage_view_permits')} →
+            </Link>
+          </div>
+        </div>
+      </section>
+
       {/* Gallery Section */}
-      <GallerySection 
+      <GallerySection
         onOpenModal={(imageNum) => {
           if (imageNum) setInitialGalleryImage(imageNum);
           setGalleryModalOpen(true);
@@ -181,10 +326,11 @@ export default function Home() {
         isOpen={galleryModalOpen} 
         onClose={() => setGalleryModalOpen(false)} 
         initialImage={initialGalleryImage}
-      />
-    </Layout>
-  );
-}
+        />
+        </Layout>
+        </>
+        );
+        }
 
 export const getStaticProps: GetStaticProps = async ({ locale }) => {
   return {

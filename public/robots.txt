@@ -1,0 +1,52 @@
+# Royal Flight Support – https://royalflightsupport.com
+# Aviation services: FBO, trip support, handling, permits, fuel, charter
+
+User-agent: *
+Allow: /
+
+# AI crawlers & answer engines – explicitly allowed to index and cite
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Perplexity-User
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: BingPreview
+Allow: /
+
+User-agent: DuckDuckBot
+Allow: /
+
+User-agent: MistralAI-User
+Allow: /
+
+# Sitemap y guía para LLMs
+Sitemap: https://royalflightsupport.com/sitemap.xml
+# llms.txt: https://royalflightsupport.com/llms.txt
