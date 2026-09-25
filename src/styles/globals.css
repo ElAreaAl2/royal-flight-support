@@ -8,6 +8,10 @@
   --background-end-rgb: 0, 0, 0;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   color: rgb(var(--foreground-rgb));
   background: linear-gradient(
@@ -16,4 +20,9 @@ body {
       rgb(var(--background-end-rgb))
     )
     rgb(var(--background-start-rgb));
+}
+
+/* Offset para el header fijo al aterrizar en una sección (#services, #contact...) */
+section[id] {
+  scroll-margin-top: 90px;
 }
